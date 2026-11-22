@@ -46,6 +46,10 @@ APXS = [
     ("J", "patch/README.md", "patch/", "부록 J. 52501 패치 적용 절차"),
     ("K", "vendor/README.md", "vendor/", "부록 K. 제3자 저장소 사본"),
     ("L", "TASKS.md", "", "부록 L. 작업 원장 — 기준선 수치 · 잔여작업"),
+    ("M", "out/SWEEP_COMM.md", "out/",
+     "부록 M. 통신 스윕 — 주기 · 지연 · 손실"),
+    ("N", "out/TASKS_prev_20261122.md", "out/",
+     "부록 N. 작업 원장 (2026-11-22 스냅샷, 보존용)"),
 ]
 MANUAL_DIR = os.path.join(HERE, "manual")
 HTML = os.path.join(MANUAL_DIR, "_harness_sitl.html")

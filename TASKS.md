@@ -508,13 +508,16 @@
 - `docs/make_manual.py` 를 고쳐 부록 목록 `APXS` 12 편을 묶음
   (A `RL_SPEC` · B `RUN_ORDER` · C `FIELD_CHECKLIST` · D `DEBUG` · E `SITL` ·
   F `FILE_SWAP` · G `INPUT_PATHS` · H `GEOMETRY` · I `REPO_SCOPE` ·
-  J `patch/README` · K `vendor/README` · L `TASKS`)
+  J `patch/README` · K `vendor/README` · L `TASKS` ·
+  M `out/SWEEP_COMM` · N `out/TASKS_prev_20261122`)
+- M·N 은 사용자 지시 "모든 MD 를 하나의 PDF 로" 에 따라 뒤에 더한 것임.
+  N 은 **2026-11-22 스냅샷**이므로 본문과 겹침 — 보존용으로만 둠
 - 부록마다 제목 번호를 `A.n` 처럼 바꾸고 상대링크 접두사를 원본 폴더로 교정함
 - 구성도 앞에 `.pagebreak` 를 넣어 **PDF 1 쪽이 실행 순서만 담도록** 함
 
 | 항목 | 값 (실측) |
 |---|---|
-| 부록 | 12 편 |
+| 부록 | **14 편** — 저장소의 MD 전부(README 본문 + 부록 A–N) |
 | 수식 | 102 식 (블록 11 · 인라인 91) |
 | `katex-error` | **0** |
 | PDF 크기 | 약 3.4 MB (통합 전 1 308 276 B). 부록 L 이 이 파일이므로 재생성마다 조금씩 바뀜 |
