@@ -1,0 +1,6 @@
+SITL: episodes=1 steps=600 speed=1.00 dr=off  (1ep = 60.0 s)
+  부착기하 r1=(+0.8000, -1.0000) r2=(-0.4000, -1.0000) m  간격 1.200 m  r_jit 0.150 m  [폰툰 바디 FRD, 원점=기하중심]
+  ep  0 seed 1000  dpos 0.0073 m  dyaw 0.015 deg  k 3000/3000  overrun 0  worst 17.0 ms
+
+합계: 1/1  평균 0.00727 m (최대 0.00727)  yaw 평균 0.0149 deg  overrun 0  →  PASS
+기록: out/SITL_geomshift.json

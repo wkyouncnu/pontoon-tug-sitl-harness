@@ -1,0 +1,15 @@
+# 줄끝 고정 — PowerShell 5.1 은 BOM 없는 UTF-8 을 cp949 로 읽고,
+# bash 는 CRLF 스크립트를 실행하지 못한다 (CLAUDE.md 함정 ①).
+* text=auto eol=lf
+*.sh  text eol=lf
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+
+# 이진 산출물
+*.onnx binary
+*.pdf  binary
+*.mp4  binary
+*.svg  text eol=lf
+*.woff2 binary
+*.ttf   binary
+*.png   binary

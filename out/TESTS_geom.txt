@@ -1,0 +1,86 @@
+harness_sitl 테스트 (pytest 없이 직접 실행)
+  python : C:\Users\admin\Desktop\02_논문·문헌\새로운 연구주제(문헌조사)\PINN\plan_pontoon_rl\.venv\Scripts\python.exe
+  모듈   : test_schema_sync, test_wire_roundtrip, test_onnx_parity, test_px4_state, test_geometry_cfg, test_same_code_both_paths, test_sitl_parity, test_safety, test_acceptance
+
+[test_schema_sync]
+  test_fields_match_dataclasses      PASS    0.01s  7개 메시지 필드 일치
+  test_frame_convention_recorded     PASS    0.01s  NED 월드 + FRD 바디 (부호 반전 없음)
+  test_rates_match_env               PASS    0.12s  물리 50 Hz / 제어 10 Hz (env 와 일치)
+  test_schema_parses                 PASS    0.01s  v1, 메시지 7종, 전송 3종
+  test_topics_registered             PASS    0.00s  7개 토픽 (TOPICS=QOS=TOPIC_MAP)
+  test_unconfirmed_topics_flagged    PASS    0.00s  확정 3 / 확인필요 4 (배포본 .msg 기준)
+
+[test_wire_roundtrip]
+  test_allocation_debug_roundtrip    PASS    0.00s  15 필드 왕복 OK
+  test_crc_extra_constants           PASS    0.00s  52502/123, 52503/16 (usv_tug.py 인용값)
+  test_mavlink_crc_detects_corruption PASS    0.00s  손상 프레임을 CRC 로 거부함 (정상)
+  test_mavlink_crc_known_vector      PASS    0.00s  0x6F91 (표준벡터 일치)
+  test_mavlink_frame_roundtrip       PASS    0.00s  frame 68 B, 왕복 오차 0.0e+00
+  test_mavlink_seq_advances          PASS    0.00s  0..255 wrap 확인
+  test_mothership_data_float32       PASS    0.00s  tau_d 절대오차 max 0.000e+00 N (60 N 기준)
+  test_mothership_state_52501_crc_extra PASS    0.14s  52501/119 (신설), 52502/123 · 52503/16 불변
+  test_mothership_state_52501_roundtrip PASS    0.14s  13 필드 왕복 OK, frame 59 B, float32 최대오차 3.83e-07
+  test_mothership_state_52501_zero_truncation PASS    0.00s  truncation 후 복원 OK, frame 24 B (< 61 B)
+  test_pontoon_state_float32         PASS    0.00s  float32 상대오차 max 5.835e-08 (허용 2.0e-07)
+  test_tug_command_float64_exact     PASS    0.00s  float64 왕복 오차 0.0e+00 (정확히 0)
+  test_tug_thrust_float64_exact      PASS    0.00s  오차 0.0e+00
+
+[test_onnx_parity]
+  test_artifacts_exist               PASS    0.00s  zip 0.5 MB / onnx 79 kB
+  test_clipping_is_the_only_difference PASS    2.56s  clip 전 6.627e+00 / clip 후 6.557e-07 → 원인은 clip 유무
+  test_harness_policy_wrapper        PASS    0.01s  래퍼 = 세션+clip, 오차 0.0e+00 (포화 샘플 50/50)
+  test_no_obs_normalization          PASS    0.00s  VecNormalize 없음 → ONNX 입력 = 환경 원 관측
+  test_onnx_matches_sb3              PASS    2.42s  max|Δ| 6.557e-07 / mean 8.232e-08 (허용 1.0e-05, 운용관측 n=2404)
+
+[test_px4_state]
+  test_body_ned_roundtrip            PASS    0.00s  왕복 최대차 1.11e-16
+  test_lla_ned_matrix_matches_ugv    PASS    0.00s  행렬 원소 최대차 0.0e+00 (UGV 원문과 동일)
+  test_lla_ned_small_offset          PASS    0.00s  N 100.001 m · E 99.999 m (원점 오차 < 1e-6 m)
+  test_nine_values_parity            PASS    0.00s  랜덤 200 점 × 9 값, 최대 절대차 4.44e-16 (< 1e-09)
+  test_psi_ref_los_fallback          PASS    0.00s  yaw 없음 → 기본 None, 옵션 시 LOS(π/2) 와 출처 표기
+  test_quat_matches_rotation_matrix  PASS    0.00s  3축 역회전과 평면 2×2 최대차 1.67e-16
+  test_quat_to_yaw                   PASS    0.00s  yaw 7점 오차 < 1e-12, 불량 3종 전부 거부
+  test_rejects_nonfinite             PASS    0.00s  NaN/inf 3종 거부 + 직전값 유지, origin 없는 LLA 거부
+  test_staleness_blocks_state        PASS    0.00s  stale 0.5 s 경계에서 None (τ=0 경로로 이어진다)
+
+[test_geometry_cfg]
+  test_bad_frame_rejected            PASS    0.00s  
+  test_base_cfg_not_mutated          PASS    0.00s  
+  test_default_file_is_valid         PASS    0.01s  
+  test_disabled_matches_sc3          PASS    0.01s  
+  test_override_reaches_controller_and_qp PASS    0.02s  
+  test_override_reaches_plant        PASS    0.01s  
+  test_summary_line                  PASS    0.00s  
+  test_unit_mistake_rejected         PASS    0.00s  
+  test_unknown_key_rejected          PASS    0.00s  
+
+[test_same_code_both_paths]
+  test_adapters_hold_no_duplicate_state PASS    0.00s  NucNode 14개 + Esp32LinkNode 6개 전부 읽기전용 property
+  test_controller_standalone_no_transport PASS    0.01s  전송계층 없이 24스텝 동작, |u6|max 35.85 N·N·N·m
+  test_node_and_controller_agree_exactly PASS    0.02s  경로 A(직접) == 경로 B(노드) 오차 0.0e+00, 24스텝 (비포화 3/24)
+  test_nuc_deps_are_numerics_only    PASS    0.00s  의존성 ['__future__', 'copy', 'env', 'math', 'nuc', 'numpy', 'onnxruntime', 'os', 'sys', 'time', 'typing']
+  test_nuc_imports_no_transport      PASS    0.00s  nuc/*.py 5개, 금지 import 0건 (iface|nodes|plant|rclpy|...)
+  test_transport_quantization_is_the_only_difference PASS    0.02s  float64 직접 vs 전송경유 `u6` 차이 max 7.38e-06 N (상한 1e-02), 비포화 3/24
+
+[test_sitl_parity]
+  test_a_prev_evolves_identically    PASS    0.02s  a_prev 12 스텝 동일 (차이 정확히 0)
+  test_inproc_float32_state_is_conservative PASS    0.02s  inproc float32 양자화 -> tau_d 차이 1.43e-05 N (|tau_d|max 60.0 N, 상대 2.4e-07, 상한 1e-03) -> 보수적
+  test_two_adapters_same_tau_exactly PASS    0.02s  40 스텝 x 6 성분, tau_d/tau_i 차이 **정확히 0**, |tau_i|max 35.85 N
+
+[test_safety]
+  test_duplicate_signals_single_burst PASS    0.81s  SIGINT/SIGTERM/SIGHUP → 첫 신호 KeyboardInterrupt, 나머지 SIG_IGN, τ=0 ×10 온전. ⚠️ SIGHUP 은 흉내낸 핸들러 호출
+  test_input_timeout_sends_zero      PASS    1.77s  정상→단절→τ=0 지속 (0.3 s 에 15 개)
+  test_nonfinite_replaces_whole_message PASS    1.62s  3 사례(tau_x_one, tau_n_two, tau_y_two) 전부 6 필드 τ=0
+  test_nuc_nodes_stop_publishing_when_stale PASS    0.01s  단절 5 틱 발행 0 / n_stale 5 / 복구 후 재개 → τ=0 은 `tug_tx` 가 만든다 (장치 중복 없음)
+  test_override_on_off_resets_a_prev PASS    0.01s  a_prev 초기화 확인 (에피소드 경계 경로와 동일)
+  test_override_rc_on_off            PASS    0.01s  공칭 |τ|=103.923 → 개입 τ=0, 정책 미실행
+  test_shutdown_burst_ten_zeros      PASS    0.81s  와이어 수신 10 개 (버스트 10 + 진행중 타이머), 마지막 τ=0, _closing 확인
+
+[test_acceptance]
+  test_closed_loop_acceptance        PASS   23.20s  20/20 · 평균 0.00252 m (최대 0.00517 m) · 방위 0.0296 deg
+  test_lower_allocation_roundtrip    PASS    0.01s  τ→f→τ 왕복 오차 1.8e-15 (det T = 2d ≠ 0)
+  test_no_packet_loss_by_default     PASS    0.00s  모든 토픽 drop 0 (지연·드랍 주입은 옵션이며 기본 0)
+  test_npz_video_contract            PASS    0.00s  키 8개 · S (600, 6) · U (600, 6) · dt 0.10
+  test_rate_split_reproduced         PASS    0.00s  state 3000 : tau_d 600 = 5.00 : 1 (= 50 Hz : 10 Hz)
+
+합계: 63 PASS / 0 FAIL

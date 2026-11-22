@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+  사본이다. 원본: cooperative-tug-experiment/experiment/nuc 코드/nuc_ws/src/tug_bridge/
+  mavlink/usv_tug.xml (타인 저장소 — 읽기만 했다. 수정·푸시하지 않았다).
+  바꾼 것: MOTHERSHIP_STATE (52501) 블록을 **추가**한 것뿐. 52502/52503 은 한 글자도 안 바꿨다.
+  <version>3</version> 도 올리지 않았다 — 메시지 추가는 하위호환이고
+  52502/52503 의 CRC_EXTRA 는 불변이다 (측정으로 확인: 123 / 16 그대로).
+-->
+<mavlink>
+  <include>development.xml</include>
+  <version>3</version>
+  <dialect>0</dialect>
+  <messages>
+    <message id="52501" name="MOTHERSHIP_STATE">
+      <description>Mothership pose, velocity and reference pose for the NUC-side RL controller. Added 2026-11-22 for the RL path only; MOTHERSHIP_DATA (52502) is unchanged and keeps serving the existing allocation path.</description>
+      <field type="uint64_t" name="timestamp" units="us">Time since the sender's boot</field>
+      <field type="float" name="x" units="m">NED north position of the mothership CG</field>
+      <field type="float" name="y" units="m">NED east position of the mothership CG</field>
+      <field type="float" name="psi" units="rad">Heading, NED, clockwise from north positive</field>
+      <field type="float" name="u" units="m/s">Body surge velocity, bow positive</field>
+      <field type="float" name="v" units="m/s">Body sway velocity, starboard positive</field>
+      <field type="float" name="r" units="rad/s">Yaw rate, clockwise from above positive</field>
+      <field type="float" name="x_ref" units="m">Reference north position, same source as the existing LOS guidance</field>
+      <field type="float" name="y_ref" units="m">Reference east position, same source as the existing LOS guidance</field>
+      <field type="float" name="psi_ref" units="rad">Reference heading, same source as the existing LOS guidance</field>
+      <field type="uint8_t" name="scenario_mode">Scenario selector mirrored from the mothership model</field>
+      <field type="uint8_t" name="rc_on_off">1 = manual RC override active. The NUC must ignore the RL output and command zero force.</field>
+      <field type="uint8_t" name="on_off">1 = mothership controller enabled</field>
+    </message>
+    <message id="52502" name="MOTHERSHIP_DATA">
+      <description>Mothership force command at the mothership CG (body frame).</description>
+      <field type="uint64_t" name="timestamp" units="us">Time since the sender's boot</field>
+      <field type="float" name="tau_x" units="N">Surge force, bow positive</field>
+      <field type="float" name="tau_y" units="N">Sway force, starboard positive</field>
+      <field type="float" name="tau_n" units="N.m">Yaw moment, clockwise from above positive</field>
+    </message>
+    <message id="52503" name="TUG_COMMAND">
+      <description>Upper allocation result for both tugs. Tug 1 uses *_one, tug 2 uses *_two.</description>
+      <field type="uint64_t" name="timestamp" units="us">Time since the sender's boot</field>
+      <field type="double" name="tau_x_one" units="N">Tug 1 surge force</field>
+      <field type="double" name="tau_y_one" units="N">Tug 1 sway force</field>
+      <field type="double" name="tau_n_one" units="N.m">Tug 1 yaw moment</field>
+      <field type="double" name="tau_x_two" units="N">Tug 2 surge force</field>
+      <field type="double" name="tau_y_two" units="N">Tug 2 sway force</field>
+      <field type="double" name="tau_n_two" units="N.m">Tug 2 yaw moment</field>
+    </message>
+  </messages>
+</mavlink>

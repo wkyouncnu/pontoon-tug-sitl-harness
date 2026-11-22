@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="760" viewBox="0 0 1180 760">
+<defs>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0,1 L9,5 L0,9 z" fill="#8c8c8c"/></marker>
+<marker id="ahn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0,1 L9,5 L0,9 z" fill="#1f3a5f"/></marker>
+</defs>
+<rect x="0" y="0" width="1180" height="760" fill="#ffffff"/>
+<rect x="36" y="72" width="318" height="132" rx="0" fill="#e9eef5" stroke="#1f3a5f" stroke-width="1.4"/>
+<text x="195" y="96" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="13" text-anchor="middle" fill="#1f3a5f" font-weight="bold">마더십</text>
+<text x="195" y="118" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11.5" text-anchor="middle" fill="#243447" font-weight="normal">폰툰 자세·속도를 측정해 보냄</text>
+<text x="195" y="136" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11.5" text-anchor="middle" fill="#243447" font-weight="normal">RL 목표자세도 같이 보냄</text>
+<text x="195" y="154" font-family="Consolas, D2Coding, monospace" font-size="10.5" text-anchor="middle" fill="#4a5a6a" font-weight="normal">nodes/node_b_mothership.py</text>
+<text x="344" y="195" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10.5" text-anchor="end" fill="#1f3a5f" font-weight="bold">50 Hz</text>
+<rect x="431" y="72" width="318" height="132" rx="0" fill="#e9eef5" stroke="#1f3a5f" stroke-width="1.4"/>
+<text x="590" y="96" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="13" text-anchor="middle" fill="#1f3a5f" font-weight="bold">마더십 NUC — 상위 제어</text>
+<text x="590" y="118" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11.5" text-anchor="middle" fill="#243447" font-weight="normal">ONNX 정책 10 Hz → 폰툰 목표력 τ_d</text>
+<text x="590" y="136" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11.5" text-anchor="middle" fill="#243447" font-weight="normal">Latch-aware QP 50 Hz → 터그 2대 몫</text>
+<text x="590" y="154" font-family="Consolas, D2Coding, monospace" font-size="10.5" text-anchor="middle" fill="#4a5a6a" font-weight="normal">nuc/controller.py (실물과 동일)</text>
+<text x="590" y="170" font-family="Consolas, D2Coding, monospace" font-size="10.5" text-anchor="middle" fill="#4a5a6a" font-weight="normal">nodes/node_c_nuc.py (전송 어댑터)</text>
+<text x="739" y="195" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10.5" text-anchor="end" fill="#1f3a5f" font-weight="bold">10 / 50 Hz</text>
+<rect x="826" y="72" width="318" height="132" rx="0" fill="#e9eef5" stroke="#1f3a5f" stroke-width="1.4"/>
+<text x="985" y="96" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="13" text-anchor="middle" fill="#1f3a5f" font-weight="bold">터그 2대</text>
+<text x="985" y="118" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11.5" text-anchor="middle" fill="#243447" font-weight="normal">받은 τ 를 추진기 3기로 분해</text>
+<text x="985" y="136" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11.5" text-anchor="middle" fill="#243447" font-weight="normal">하위 역행렬 det = 2d = 0.6</text>
+<text x="985" y="154" font-family="Consolas, D2Coding, monospace" font-size="10.5" text-anchor="middle" fill="#4a5a6a" font-weight="normal">nodes/node_d_esp32.py</text>
+<text x="985" y="170" font-family="Consolas, D2Coding, monospace" font-size="10.5" text-anchor="middle" fill="#4a5a6a" font-weight="normal">plant/tug_lower.py</text>
+<text x="1134" y="195" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10.5" text-anchor="end" fill="#1f3a5f" font-weight="bold">50 Hz</text>
+<line x1="195" y1="204" x2="195" y2="230" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3"/>
+<rect x="36" y="230" width="318" height="40" rx="0" fill="#f4f4f4" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3"/>
+<text x="195" y="255" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11" text-anchor="middle" fill="#4a4a4a" font-weight="normal">마더십 Pixhawk + Simulink 앱</text>
+<line x1="590" y1="204" x2="590" y2="230" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3"/>
+<rect x="431" y="230" width="318" height="40" rx="0" fill="#f4f4f4" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3"/>
+<text x="590" y="255" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11" text-anchor="middle" fill="#4a4a4a" font-weight="normal">마더십 NUC (ONNX Runtime)</text>
+<line x1="985" y1="204" x2="985" y2="230" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3"/>
+<rect x="826" y="230" width="318" height="40" rx="0" fill="#f4f4f4" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3"/>
+<text x="985" y="255" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11" text-anchor="middle" fill="#4a4a4a" font-weight="normal">터그 ESP32 → 터그 Pixhawk ×2</text>
+<rect x="236" y="440" width="708" height="104" rx="0" fill="#ffffff" stroke="#555555" stroke-width="1.2"/>
+<text x="590" y="464" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="13" text-anchor="middle" fill="#1a1a1a" font-weight="bold">플랜트 — 폰툰 + 터그 2대 합동운동</text>
+<text x="590" y="486" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11.5" text-anchor="middle" fill="#243447" font-weight="normal">전자석으로 묶인 3-DOF 강체. M2 하이브리드 UDE · RK4 적분</text>
+<text x="590" y="504" font-family="Consolas, D2Coding, monospace" font-size="10.5" text-anchor="middle" fill="#4a5a6a" font-weight="normal">nodes/node_a_plant.py (학습 환경과 같은 모델)</text>
+<text x="934" y="535" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10.5" text-anchor="end" fill="#6b6b6b" font-weight="bold">50 Hz</text>
+<line x1="590" y1="544" x2="590" y2="568" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3"/>
+<rect x="236" y="568" width="708" height="40" rx="0" fill="#f4f4f4" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3"/>
+<text x="590" y="593" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11" text-anchor="middle" fill="#4a4a4a" font-weight="normal">수조 · 실제 폰툰과 터그</text>
+<line x1="354" y1="134" x2="431" y2="134" stroke="#1f3a5f" stroke-width="1.4" marker-end="url(#ahn)"/>
+<circle cx="392.5" cy="106" r="11" fill="#ffffff" stroke="#1f3a5f" stroke-width="1.2"/>
+<text x="392.5" y="110.5" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="12" text-anchor="middle" fill="#1f3a5f" font-weight="bold">1</text>
+<text x="392.5" y="156" font-family="Consolas, D2Coding, monospace" font-size="11" text-anchor="middle" fill="#1f3a5f" font-weight="bold">52501</text>
+<text x="392.5" y="172" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10.5" text-anchor="middle" fill="#4a5a6a" font-weight="normal">상태 9개</text>
+<line x1="749" y1="134" x2="826" y2="134" stroke="#1f3a5f" stroke-width="1.4" marker-end="url(#ahn)"/>
+<circle cx="787.5" cy="106" r="11" fill="#ffffff" stroke="#1f3a5f" stroke-width="1.2"/>
+<text x="787.5" y="110.5" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="12" text-anchor="middle" fill="#1f3a5f" font-weight="bold">2</text>
+<text x="787.5" y="156" font-family="Consolas, D2Coding, monospace" font-size="11" text-anchor="middle" fill="#1f3a5f" font-weight="bold">52503</text>
+<text x="787.5" y="172" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10.5" text-anchor="middle" fill="#4a5a6a" font-weight="normal">τ 6성분</text>
+<path d="M985,270 L985,400 L854,400 L854,440" fill="none" stroke="#1f3a5f" stroke-width="1.4" marker-end="url(#ahn)"/>
+<circle cx="985" cy="336" r="11" fill="#ffffff" stroke="#1f3a5f" stroke-width="1.2"/>
+<text x="985" y="340.5" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="12" text-anchor="middle" fill="#1f3a5f" font-weight="bold">3</text>
+<text x="1005" y="340" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10.5" text-anchor="start" fill="#1f3a5f" font-weight="normal">추력 6성분 (터그별 X, Y, N)</text>
+<path d="M326,440 L326,400 L195,400 L195,270" fill="none" stroke="#1f3a5f" stroke-width="1.4" marker-end="url(#ahn)"/>
+<circle cx="195" cy="336" r="11" fill="#ffffff" stroke="#1f3a5f" stroke-width="1.2"/>
+<text x="195" y="340.5" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="12" text-anchor="middle" fill="#1f3a5f" font-weight="bold">4</text>
+<text x="175" y="340" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10.5" text-anchor="end" fill="#1f3a5f" font-weight="normal">상태 (x, y, ψ, u, v, r)</text>
+<rect x="36" y="630" width="520" height="90" rx="0" fill="#fbfbfb" stroke="#8c8c8c" stroke-width="1"/>
+<text x="50" y="651" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11.5" text-anchor="start" fill="#1f3a5f" font-weight="bold">범례</text>
+<rect x="46" y="663" width="24" height="13" rx="0" fill="#e9eef5" stroke="#1f3a5f" stroke-width="1.4"/>
+<text x="80" y="672" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11" text-anchor="start" fill="#333333" font-weight="normal">본 과제 산출물 — 하네스 노드 (실물 코드와 동일)</text>
+<rect x="46" y="683" width="24" height="13" rx="0" fill="#f4f4f4" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3"/>
+<text x="80" y="692" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11" text-anchor="start" fill="#333333" font-weight="normal">하네스가 대신하는 실물 구성요소</text>
+<line x1="46" y1="709" x2="70" y2="709" stroke="#1f3a5f" stroke-width="1.4" marker-end="url(#ahn)"/>
+<text x="80" y="712" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11" text-anchor="start" fill="#333333" font-weight="normal">MAVLink v2 over UDP. 숫자는 1 주기 안의 순서</text>
+<rect x="596" y="630" width="548" height="114" rx="0" fill="#fbfbfb" stroke="#8c8c8c" stroke-width="1"/>
+<text x="610" y="651" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11.5" text-anchor="start" fill="#1f3a5f" font-weight="bold">읽는 법</text>
+<text x="610" y="674" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11" text-anchor="start" fill="#333333" font-weight="normal">1 → 2 → 3 → 4 가 한 바퀴 = 0.02 s (50 Hz)</text>
+<text x="610" y="693" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11" text-anchor="start" fill="#333333" font-weight="normal">정책만 5 바퀴에 한 번 갱신됨 (그림 4)</text>
+<text x="610" y="712" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11" text-anchor="start" fill="#333333" font-weight="normal">점선 상자를 실물로 바꿔 끼우면 그대로 수조시험이 됨</text>
+<text x="610" y="731" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11" text-anchor="start" fill="#1f3a5f" font-weight="normal">위 3 블록의 코드는 바뀌지 않음 (docs/FILE_SWAP.md)</text>
+</svg>

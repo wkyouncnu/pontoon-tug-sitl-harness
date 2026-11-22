@@ -1,0 +1,63 @@
+# 로컬 UDP 루프백 시험용 (하드웨어 없음). 모든 주소는 127.0.0.1이다.
+#   fake_mothership → 127.0.0.1:14600 → mothership_rx → upper_allocation
+#   tug1_tx (bind 14601) → 127.0.0.1:14651 → fake_tug   (실제 구성의 Tug1 ESP32 14550 자리)
+#   tug2_tx (bind 14602) → 127.0.0.1:14652 → fake_tug   (실제 구성의 Tug2 ESP32 14550 자리)
+# mothership_rx HEARTBEAT 목적지 14660은 실제 구성의 Mothership ESP32 14550 자리다.
+#   수신 확인: fake_mothership.py --bind-port 14660
+mothership_rx:
+  ros__parameters:
+    bind_ip: "127.0.0.1"
+    bind_port: 14600
+    allowed_src_ip: "127.0.0.1"
+    filter_sysid: 1
+    filter_compid: 0
+    topic: "/mothership/data"
+    qos_reliability: "best_effort"
+    heartbeat_enable: true
+    heartbeat_target_ip: "127.0.0.1"
+    heartbeat_target_port: 14660
+    heartbeat_period_s: 1.0
+    heartbeat_timeout_s: 3.0
+    own_sysid: 250
+    own_compid: 191
+    stats_period_s: 2.0
+    rx_timeout_s: 1.0
+    rebind_after_s: 5.0
+
+tug1_tx:
+  ros__parameters:
+    topic: "/tug_command"
+    qos_reliability: "best_effort"
+    bind_ip: "127.0.0.1"
+    bind_port: 14601
+    remote_ip: "127.0.0.1"
+    remote_port: 14651
+    send_rate_hz: 50.0
+    input_timeout_s: 0.5
+    own_sysid: 250
+    own_compid: 191
+    heartbeat_enable: true
+    heartbeat_period_s: 1.0
+    heartbeat_timeout_s: 3.0
+    peer_sysid: 2
+    shutdown_zero_count: 10
+    stats_period_s: 2.0
+
+tug2_tx:
+  ros__parameters:
+    topic: "/tug_command"
+    qos_reliability: "best_effort"
+    bind_ip: "127.0.0.1"
+    bind_port: 14602
+    remote_ip: "127.0.0.1"
+    remote_port: 14652
+    send_rate_hz: 50.0
+    input_timeout_s: 0.5
+    own_sysid: 250
+    own_compid: 191
+    heartbeat_enable: true
+    heartbeat_period_s: 1.0
+    heartbeat_timeout_s: 3.0
+    peer_sysid: 3
+    shutdown_zero_count: 10
+    stats_period_s: 2.0

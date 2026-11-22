@@ -1,0 +1,34 @@
+# NOTICE — 제3자 구성요소 및 MIT 허락범위에서 제외되는 파일
+
+- 작성: 충남대학교 자율운항시스템공학과 윤원근 교수
+- 본 저장소의 라이선스는 `LICENSE` (MIT) 임
+- 아래 표의 파일은 **본 저작권자의 저작물이 아니므로 MIT 허락범위에 포함되지 않음**
+
+## 1. MIT 허락범위에서 제외되는 파일
+
+| 파일 | 원저작자 | 라이선스 | 처리 |
+|---|---|---|---|
+| `mavlink/usv_tug.xml` 중 `MOTHERSHIP_DATA` (52502) · `TUG_COMMAND` (52503) 메시지 정의 | <https://github.com/JiwoongHa/cooperative-tug-experiment> (`experiment/nuc 코드/nuc_ws/src/tug_bridge/mavlink/usv_tug.xml`) | **없음** (`licenseInfo: null`, 2026-11-22 확인) | ⚠️ **재배포 권한 미확인.** 실물 체인과의 통신 호환성을 위해 원문 그대로 포함하며 수정하지 않았음. 저장소 소유자가 삭제를 요청하면 즉시 제거함 |
+| `docs/manual/vendor/katex/` | KaTeX 저작자 (Khan Academy 외) | **MIT** | 원문 `LICENSE` 를 해당 폴더에 함께 포함함. 수정하지 않았음 |
+
+- `mavlink/usv_tug.xml` 의 `MOTHERSHIP_STATE` (52501) 블록과 파일 머리말은 본 과제에서 추가한 것이며
+  MIT 가 적용됨
+- 생성물 `mavlink/gen/` 은 저장소에 포함하지 않음 (`.gitignore`). 위 XML 로부터 pymavlink 가 재생성함
+
+## 2. 저장소에 포함하지 않은 제3자 자료
+
+| 자료 | 이유 |
+|---|---|
+| `vendor/tug_bridge/*.py` (실험 저장소의 ROS 2 노드 사본) | 재배포 권한 미확인. 복제 절차만 `vendor/README.md` 에 적음 |
+| `simulink/*.slx` · `simulink/*.m` (발주처 Simulink 모델) | 공개 범위 미결 |
+| `patch/` 의 패치를 실험 저장소에 적용·PR 하는 행위 | 저장소 소유자 조율 사항. 본 저장소는 패치 파일만 보관함 |
+
+## 3. 과제 귀속
+
+- 삼성중공업 폰툰 예인 협조제어 과제의 시뮬레이션 하네스임
+- 발주처 사양서·기밀 수치는 포함하지 않음
+- ⚠️ **확인 필요**: 과제 계약상의 공개 제약 유무. 제약이 확인되면 저장소를 비공개로 전환함
+
+## 4. 상세 판단 근거
+
+- `docs/REPO_SCOPE.md` §1~§5 (포함·제외 목록, 공개 전환 재판단 §3.2)

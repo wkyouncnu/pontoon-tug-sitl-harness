@@ -1,0 +1,63 @@
+# harness_sitl .gitignore
+#
+# 원칙
+#   1. run_all.sh 가 다시 만들 수 있는 것은 올리지 않는다
+#   2. 배포에 필요한 산출물(ONNX 정책 · 합격판정 · 매뉴얼 PDF)만 예외로 포함한다
+#   3. 타인 저장소 사본과 발주처 산출물은 기본 제외한다 (CONFIDENTIAL — 사용자 판단 사항)
+
+# --- 파이썬 -----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# --- 재생성되는 생성물 ------------------------------------------------------
+mavlink/gen/
+docs/manual/_harness_sitl.html
+docs/manual/_eqsheet.html
+docs/manual/check/
+
+# --- 실행 산출물 ------------------------------------------------------------
+# out/ 는 통째로 제외하되, 배포에 필요한 것만 되살린다 (공개 전환 시 재판단: docs/REPO_SCOPE.md §3.2)
+out/*
+!out/ppo_sc3_final.onnx
+!out/SITL_RUN.json
+!out/SWEEP_COMM.md
+!out/SITL_RUN_px4std.json
+!out/SITL_px4std.txt
+!out/SITL_geomdef.json
+!out/SITL_geomdef.txt
+!out/SITL_geomshift.json
+!out/SITL_geomshift.txt
+!out/TESTS_geom.txt
+!out/TESTS_px4.txt
+
+# 대용량·중간물은 되살리지 않는다
+*.mp4
+!out/sitl_sc3.mp4
+out/*.bak
+out/TASKS_prev_*.md
+*.bak
+
+# --- 강화학습 체크포인트 ----------------------------------------------------
+# 중간 체크포인트는 제외, 최종본만 포함 (경로가 어디든 적용)
+*_steps.zip
+!ppo_sc3_final.zip
+
+# --- 타인 저장소 사본 (기본 제외) -------------------------------------------
+# JiwoongHa/cooperative-tug-experiment 의 노드 사본. 재배포 권한이 확인되기
+# 전까지 올리지 않는다. 출처·diff 기록인 vendor/README.md 는 올린다.
+vendor/tug_bridge/
+!vendor/README.md
+
+# --- 발주처 산출물 (기본 제외) ----------------------------------------------
+# 삼성중공업 과제의 Simulink 모델·초기화 스크립트. 공개 범위 결정 전까지 제외한다
+simulink/*.slx
+simulink/*.m
+
+# --- 편집기 · OS ------------------------------------------------------------
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini

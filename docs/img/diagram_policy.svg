@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="1000" viewBox="0 0 1180 1000">
+<defs>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0,1 L9,5 L0,9 z" fill="#8c8c8c"/></marker>
+<marker id="ahn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M0,1 L9,5 L0,9 z" fill="#1f3a5f"/></marker>
+</defs>
+<rect x="0" y="0" width="1180" height="1000" fill="#ffffff"/>
+<rect x="60" y="60" width="460" height="118" rx="0" fill="#e9eef5" stroke="#1f3a5f" stroke-width="1.4"/>
+<text x="290" y="82" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="12.5" text-anchor="middle" fill="#1f3a5f" font-weight="bold">외부 입력 — 9 개</text>
+<text x="143.333" y="112" font-family="Consolas, D2Coding, monospace" font-size="11.5" text-anchor="middle" fill="#243447" font-weight="bold">x, y, ψ</text>
+<text x="143.333" y="130" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10" text-anchor="middle" fill="#5a5a5a" font-weight="normal">폰툰 자세 [m, rad]</text>
+<text x="290" y="112" font-family="Consolas, D2Coding, monospace" font-size="11.5" text-anchor="middle" fill="#243447" font-weight="bold">u, v, r</text>
+<text x="290" y="130" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10" text-anchor="middle" fill="#5a5a5a" font-weight="normal">바디 속도 [m/s, rad/s]</text>
+<text x="436.667" y="112" font-family="Consolas, D2Coding, monospace" font-size="11.5" text-anchor="middle" fill="#243447" font-weight="bold">x_ref, y_ref, ψ_ref</text>
+<text x="436.667" y="130" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10" text-anchor="middle" fill="#5a5a5a" font-weight="normal">목표자세</text>
+<text x="290" y="162" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10.5" text-anchor="middle" fill="#4a4a4a" font-weight="normal">마더십이 52501 로 보냄 — 밖에서 줘야 하는 값은 이것뿐임</text>
+<rect x="556" y="60" width="220" height="118" rx="0" fill="#ffffff" stroke="#555555" stroke-width="1"/>
+<text x="666" y="82" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="12.5" text-anchor="middle" fill="#555555" font-weight="bold">설정 상수 — 4 개</text>
+<text x="616" y="112" font-family="Consolas, D2Coding, monospace" font-size="11.5" text-anchor="middle" fill="#243447" font-weight="bold">r1 (2)</text>
+<text x="616" y="130" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10" text-anchor="middle" fill="#5a5a5a" font-weight="normal">터그1 부착위치</text>
+<text x="716" y="112" font-family="Consolas, D2Coding, monospace" font-size="11.5" text-anchor="middle" fill="#243447" font-weight="bold">r2 (2)</text>
+<text x="716" y="130" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10" text-anchor="middle" fill="#5a5a5a" font-weight="normal">터그2 부착위치</text>
+<text x="666" y="162" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10.5" text-anchor="middle" fill="#4a4a4a" font-weight="normal">sc3.yaml 의 attach — 매 스텝 같은 값</text>
+<rect x="812" y="60" width="308" height="118" rx="0" fill="#f4f4f4" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3"/>
+<text x="966" y="82" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="12.5" text-anchor="middle" fill="#5a5a5a" font-weight="bold">제어기 내부 — 8 개</text>
+<text x="870" y="112" font-family="Consolas, D2Coding, monospace" font-size="11.5" text-anchor="middle" fill="#243447" font-weight="bold">a_prev (3)</text>
+<text x="870" y="130" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10" text-anchor="middle" fill="#5a5a5a" font-weight="normal">직전 행동</text>
+<text x="966" y="112" font-family="Consolas, D2Coding, monospace" font-size="11.5" text-anchor="middle" fill="#243447" font-weight="bold">res (3)</text>
+<text x="966" y="130" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10" text-anchor="middle" fill="#5a5a5a" font-weight="normal">QP 잔차</text>
+<text x="1062" y="112" font-family="Consolas, D2Coding, monospace" font-size="11.5" text-anchor="middle" fill="#243447" font-weight="bold">marg (2)</text>
+<text x="1062" y="130" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10" text-anchor="middle" fill="#5a5a5a" font-weight="normal">래치 여유</text>
+<text x="966" y="162" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10.5" text-anchor="middle" fill="#4a4a4a" font-weight="normal">직전 스텝이 남긴 값 — reset() 이 0·0·1 로 되돌림</text>
+<line x1="290" y1="178" x2="290" y2="216" stroke="#1f3a5f" stroke-width="1.3" marker-end="url(#ahn)"/>
+<line x1="666" y1="178" x2="666" y2="216" stroke="#1f3a5f" stroke-width="1.3" marker-end="url(#ahn)"/>
+<line x1="966" y1="178" x2="966" y2="216" stroke="#1f3a5f" stroke-width="1.3" marker-end="url(#ahn)"/>
+<rect x="180" y="216" width="820" height="72" rx="0" fill="#e9eef5" stroke="#1f3a5f" stroke-width="1.4"/>
+<text x="590" y="240" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="13" text-anchor="middle" fill="#1f3a5f" font-weight="bold">build_obs()  —  nuc/controller.py:126</text>
+<text x="590" y="262" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11.5" text-anchor="middle" fill="#243447" font-weight="normal">월드 위치오차를 폰툰 바디좌표로 회전 + 방위오차를 cos·sin 으로 폄</text>
+<text x="990" y="279" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10.5" text-anchor="end" fill="#1f3a5f" font-weight="bold">10 Hz</text>
+<circle cx="164" cy="252" r="11" fill="#ffffff" stroke="#1f3a5f" stroke-width="1.2"/>
+<text x="164" y="256.5" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="12" text-anchor="middle" fill="#1f3a5f" font-weight="bold">1</text>
+<line x1="590" y1="288" x2="590" y2="332" stroke="#1f3a5f" stroke-width="1.4" marker-end="url(#ahn)"/>
+<rect x="58" y="332" width="55" height="44" rx="0" fill="#e9eef5" stroke="#1f3a5f" stroke-width="1.3"/>
+<text x="85.5" y="351" font-family="Consolas, D2Coding, monospace" font-size="9.5" text-anchor="middle" fill="#243447" font-weight="normal">eb_x</text>
+<text x="85.5" y="368" font-family="Consolas, D2Coding, monospace" font-size="10" text-anchor="middle" fill="#1f3a5f" font-weight="bold">0</text>
+<rect x="113" y="332" width="55" height="44" rx="0" fill="#e9eef5" stroke="#1f3a5f" stroke-width="1.3"/>
+<text x="140.5" y="351" font-family="Consolas, D2Coding, monospace" font-size="9.5" text-anchor="middle" fill="#243447" font-weight="normal">eb_y</text>
+<text x="140.5" y="368" font-family="Consolas, D2Coding, monospace" font-size="10" text-anchor="middle" fill="#1f3a5f" font-weight="bold">1</text>
+<rect x="168" y="332" width="55" height="44" rx="0" fill="#e9eef5" stroke="#1f3a5f" stroke-width="1.3"/>
+<text x="195.5" y="351" font-family="Consolas, D2Coding, monospace" font-size="9.5" text-anchor="middle" fill="#243447" font-weight="normal">cos</text>
+<text x="195.5" y="368" font-family="Consolas, D2Coding, monospace" font-size="10" text-anchor="middle" fill="#1f3a5f" font-weight="bold">2</text>
+<rect x="223" y="332" width="55" height="44" rx="0" fill="#e9eef5" stroke="#1f3a5f" stroke-width="1.3"/>
+<text x="250.5" y="351" font-family="Consolas, D2Coding, monospace" font-size="9.5" text-anchor="middle" fill="#243447" font-weight="normal">sin</text>
+<text x="250.5" y="368" font-family="Consolas, D2Coding, monospace" font-size="10" text-anchor="middle" fill="#1f3a5f" font-weight="bold">3</text>
+<rect x="278" y="332" width="55" height="44" rx="0" fill="#e9eef5" stroke="#1f3a5f" stroke-width="1.3"/>
+<text x="305.5" y="351" font-family="Consolas, D2Coding, monospace" font-size="9.5" text-anchor="middle" fill="#243447" font-weight="normal">u</text>
+<text x="305.5" y="368" font-family="Consolas, D2Coding, monospace" font-size="10" text-anchor="middle" fill="#1f3a5f" font-weight="bold">4</text>
+<rect x="333" y="332" width="55" height="44" rx="0" fill="#e9eef5" stroke="#1f3a5f" stroke-width="1.3"/>
+<text x="360.5" y="351" font-family="Consolas, D2Coding, monospace" font-size="9.5" text-anchor="middle" fill="#243447" font-weight="normal">v</text>
+<text x="360.5" y="368" font-family="Consolas, D2Coding, monospace" font-size="10" text-anchor="middle" fill="#1f3a5f" font-weight="bold">5</text>
+<rect x="388" y="332" width="55" height="44" rx="0" fill="#e9eef5" stroke="#1f3a5f" stroke-width="1.3"/>
+<text x="415.5" y="351" font-family="Consolas, D2Coding, monospace" font-size="9.5" text-anchor="middle" fill="#243447" font-weight="normal">r</text>
+<text x="415.5" y="368" font-family="Consolas, D2Coding, monospace" font-size="10" text-anchor="middle" fill="#1f3a5f" font-weight="bold">6</text>
+<rect x="443" y="332" width="55" height="44" rx="0" fill="#f4f4f4" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3"/>
+<text x="470.5" y="351" font-family="Consolas, D2Coding, monospace" font-size="9.5" text-anchor="middle" fill="#6b6b6b" font-weight="normal">a_prev</text>
+<text x="470.5" y="368" font-family="Consolas, D2Coding, monospace" font-size="10" text-anchor="middle" fill="#8c8c8c" font-weight="bold">7</text>
+<rect x="498" y="332" width="55" height="44" rx="0" fill="#f4f4f4" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3"/>
+<text x="525.5" y="351" font-family="Consolas, D2Coding, monospace" font-size="9.5" text-anchor="middle" fill="#6b6b6b" font-weight="normal">a_prev</text>
+<text x="525.5" y="368" font-family="Consolas, D2Coding, monospace" font-size="10" text-anchor="middle" fill="#8c8c8c" font-weight="bold">8</text>
+<rect x="553" y="332" width="55" height="44" rx="0" fill="#f4f4f4" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3"/>
+<text x="580.5" y="351" font-family="Consolas, D2Coding, monospace" font-size="9.5" text-anchor="middle" fill="#6b6b6b" font-weight="normal">a_prev</text>
+<text x="580.5" y="368" font-family="Consolas, D2Coding, monospace" font-size="10" text-anchor="middle" fill="#8c8c8c" font-weight="bold">9</text>
+<rect x="608" y="332" width="55" height="44" rx="0" fill="#f4f4f4" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3"/>
+<text x="635.5" y="351" font-family="Consolas, D2Coding, monospace" font-size="9.5" text-anchor="middle" fill="#6b6b6b" font-weight="normal">res</text>
+<text x="635.5" y="368" font-family="Consolas, D2Coding, monospace" font-size="10" text-anchor="middle" fill="#8c8c8c" font-weight="bold">10</text>
+<rect x="663" y="332" width="55" height="44" rx="0" fill="#f4f4f4" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3"/>
+<text x="690.5" y="351" font-family="Consolas, D2Coding, monospace" font-size="9.5" text-anchor="middle" fill="#6b6b6b" font-weight="normal">res</text>
+<text x="690.5" y="368" font-family="Consolas, D2Coding, monospace" font-size="10" text-anchor="middle" fill="#8c8c8c" font-weight="bold">11</text>
+<rect x="718" y="332" width="55" height="44" rx="0" fill="#f4f4f4" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3"/>
+<text x="745.5" y="351" font-family="Consolas, D2Coding, monospace" font-size="9.5" text-anchor="middle" fill="#6b6b6b" font-weight="normal">res</text>
+<text x="745.5" y="368" font-family="Consolas, D2Coding, monospace" font-size="10" text-anchor="middle" fill="#8c8c8c" font-weight="bold">12</text>
+<rect x="773" y="332" width="55" height="44" rx="0" fill="#f4f4f4" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3"/>
+<text x="800.5" y="351" font-family="Consolas, D2Coding, monospace" font-size="9.5" text-anchor="middle" fill="#6b6b6b" font-weight="normal">marg</text>
+<text x="800.5" y="368" font-family="Consolas, D2Coding, monospace" font-size="10" text-anchor="middle" fill="#8c8c8c" font-weight="bold">13</text>
+<rect x="828" y="332" width="55" height="44" rx="0" fill="#f4f4f4" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3"/>
+<text x="855.5" y="351" font-family="Consolas, D2Coding, monospace" font-size="9.5" text-anchor="middle" fill="#6b6b6b" font-weight="normal">marg</text>
+<text x="855.5" y="368" font-family="Consolas, D2Coding, monospace" font-size="10" text-anchor="middle" fill="#8c8c8c" font-weight="bold">14</text>
+<rect x="883" y="332" width="55" height="44" rx="0" fill="#ffffff" stroke="#555555" stroke-width="1"/>
+<text x="910.5" y="351" font-family="Consolas, D2Coding, monospace" font-size="9.5" text-anchor="middle" fill="#243447" font-weight="normal">r1x</text>
+<text x="910.5" y="368" font-family="Consolas, D2Coding, monospace" font-size="10" text-anchor="middle" fill="#8c8c8c" font-weight="bold">15</text>
+<rect x="938" y="332" width="55" height="44" rx="0" fill="#ffffff" stroke="#555555" stroke-width="1"/>
+<text x="965.5" y="351" font-family="Consolas, D2Coding, monospace" font-size="9.5" text-anchor="middle" fill="#243447" font-weight="normal">r1y</text>
+<text x="965.5" y="368" font-family="Consolas, D2Coding, monospace" font-size="10" text-anchor="middle" fill="#8c8c8c" font-weight="bold">16</text>
+<rect x="993" y="332" width="55" height="44" rx="0" fill="#ffffff" stroke="#555555" stroke-width="1"/>
+<text x="1020.5" y="351" font-family="Consolas, D2Coding, monospace" font-size="9.5" text-anchor="middle" fill="#243447" font-weight="normal">r2x</text>
+<text x="1020.5" y="368" font-family="Consolas, D2Coding, monospace" font-size="10" text-anchor="middle" fill="#8c8c8c" font-weight="bold">17</text>
+<rect x="1048" y="332" width="55" height="44" rx="0" fill="#ffffff" stroke="#555555" stroke-width="1"/>
+<text x="1075.5" y="351" font-family="Consolas, D2Coding, monospace" font-size="9.5" text-anchor="middle" fill="#243447" font-weight="normal">r2y</text>
+<text x="1075.5" y="368" font-family="Consolas, D2Coding, monospace" font-size="10" text-anchor="middle" fill="#8c8c8c" font-weight="bold">18</text>
+<text x="580.5" y="396" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11.5" text-anchor="middle" fill="#4a4a4a" font-weight="normal">관측 19 차 — 칸 안 아래 숫자는 색인 (VecNormalize 미사용. 배포에 동반 파일이 없음)</text>
+<line x1="590" y1="404" x2="590" y2="426" stroke="#1f3a5f" stroke-width="1.4" marker-end="url(#ahn)"/>
+<rect x="330" y="426" width="520" height="78" rx="0" fill="#e9eef5" stroke="#1f3a5f" stroke-width="1.4"/>
+<text x="590" y="450" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="13" text-anchor="middle" fill="#1f3a5f" font-weight="bold">ONNX 정책</text>
+<text x="590" y="472" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11.5" text-anchor="middle" fill="#243447" font-weight="normal">19 → 128 → 128 → 3, tanh · opset 17 · 78 867 B</text>
+<text x="590" y="490" font-family="Consolas, D2Coding, monospace" font-size="10.5" text-anchor="middle" fill="#4a5a6a" font-weight="normal">out/ppo_sc3_final.onnx</text>
+<text x="840" y="495" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10.5" text-anchor="end" fill="#1f3a5f" font-weight="bold">10 Hz</text>
+<circle cx="314" cy="465" r="11" fill="#ffffff" stroke="#1f3a5f" stroke-width="1.2"/>
+<text x="314" y="469.5" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="12" text-anchor="middle" fill="#1f3a5f" font-weight="bold">2</text>
+<line x1="590" y1="504" x2="590" y2="534" stroke="#1f3a5f" stroke-width="1.4" marker-end="url(#ahn)"/>
+<rect x="400" y="534" width="380" height="54" rx="0" fill="#ffffff" stroke="#555555" stroke-width="1.2"/>
+<text x="590" y="556" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="12.5" text-anchor="middle" fill="#1a1a1a" font-weight="bold">행동 3 차 → 폰툰 목표력</text>
+<text x="590" y="575" font-family="Consolas, D2Coding, monospace" font-size="11" text-anchor="middle" fill="#4a4a4a" font-weight="normal">tau_d = clip(a, -1, 1) * [60, 60, 60]</text>
+<circle cx="384" cy="561" r="11" fill="#ffffff" stroke="#1f3a5f" stroke-width="1.2"/>
+<text x="384" y="565.5" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="12" text-anchor="middle" fill="#1f3a5f" font-weight="bold">3</text>
+<path d="M780,561 L910,561 L910,630" fill="none" stroke="#1f3a5f" stroke-width="1.4" marker-end="url(#ahn)"/>
+<rect x="700" y="630" width="420" height="112" rx="0" fill="#e9eef5" stroke="#1f3a5f" stroke-width="1.4"/>
+<text x="910" y="654" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="13" text-anchor="middle" fill="#1f3a5f" font-weight="bold">Latch-aware QP</text>
+<text x="910" y="676" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11.5" text-anchor="middle" fill="#243447" font-weight="normal">제약 22 행 = 추진기 포화 + 전자석 3종</text>
+<text x="910" y="694" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11.5" text-anchor="middle" fill="#243447" font-weight="normal">(인장 F_t · 전단 F_s · 박리 M_max)</text>
+<text x="910" y="712" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11.5" text-anchor="middle" fill="#243447" font-weight="normal">RL 로 대체하지 않음 — 이탈을 막는 하드 보장임</text>
+<text x="910" y="730" font-family="Consolas, D2Coding, monospace" font-size="10.5" text-anchor="middle" fill="#4a5a6a" font-weight="normal">pontoon_rl/env/latch_qp.py</text>
+<text x="1110" y="733" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10.5" text-anchor="end" fill="#1f3a5f" font-weight="bold">50 Hz</text>
+<circle cx="684" cy="654" r="11" fill="#ffffff" stroke="#1f3a5f" stroke-width="1.2"/>
+<text x="684" y="658.5" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="12" text-anchor="middle" fill="#1f3a5f" font-weight="bold">4</text>
+<rect x="60" y="630" width="420" height="112" rx="0" fill="#ffffff" stroke="#555555" stroke-width="1.2"/>
+<text x="270" y="656" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="13" text-anchor="middle" fill="#1a1a1a" font-weight="bold">플랜트</text>
+<text x="270" y="680" font-family="Consolas, D2Coding, monospace" font-size="11" text-anchor="middle" fill="#4a4a4a" font-weight="normal">u6 = 터그 2대 x (X, Y, N)</text>
+<text x="270" y="704" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11" text-anchor="middle" fill="#333333" font-weight="normal">폰툰·터그 합동운동 적분 (RK4 ×5)</text>
+<text x="270" y="727" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10.5" text-anchor="middle" fill="#6b6b6b" font-weight="normal">실물에서는 수조의 실제 폰툰</text>
+<line x1="700" y1="686" x2="480" y2="686" stroke="#1f3a5f" stroke-width="1.4" marker-end="url(#ahn)"/>
+<circle cx="590" cy="686" r="11" fill="#ffffff" stroke="#1f3a5f" stroke-width="1.2"/>
+<text x="590" y="690.5" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="12" text-anchor="middle" fill="#1f3a5f" font-weight="bold">5</text>
+<line x1="1120" y1="686" x2="1152" y2="686" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3"/>
+<line x1="850" y1="465" x2="1152" y2="465" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3"/>
+<path d="M1152,686 L1152,32 L966,32 L966,60" fill="none" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3" marker-end="url(#ah)"/>
+<text x="1146" y="580" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10" text-anchor="end" fill="#6b6b6b" font-weight="normal">res · marg</text>
+<text x="1146" y="410" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10" text-anchor="end" fill="#6b6b6b" font-weight="normal">a_prev</text>
+<path d="M60,686 L22,686 L22,32 L290,32 L290,60" fill="none" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3" marker-end="url(#ah)"/>
+<text x="34" y="560" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="10" text-anchor="start" fill="#6b6b6b" font-weight="normal">x, y, ψ, u, v, r</text>
+<rect x="60" y="790" width="520" height="110" rx="0" fill="#fbfbfb" stroke="#8c8c8c" stroke-width="1"/>
+<text x="74" y="811" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11.5" text-anchor="start" fill="#1f3a5f" font-weight="bold">범례</text>
+<rect x="70" y="823" width="24" height="13" rx="0" fill="#e9eef5" stroke="#1f3a5f" stroke-width="1.4"/>
+<text x="104" y="832" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11" text-anchor="start" fill="#333333" font-weight="normal">52501 로 들어온 9 개에서 나온 성분 (색인 0–6)</text>
+<rect x="70" y="843" width="24" height="13" rx="0" fill="#ffffff" stroke="#555555" stroke-width="1.2"/>
+<text x="104" y="852" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11" text-anchor="start" fill="#333333" font-weight="normal">설정 상수 (색인 15–18)</text>
+<rect x="70" y="863" width="24" height="13" rx="0" fill="#f4f4f4" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3"/>
+<text x="104" y="872" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11" text-anchor="start" fill="#333333" font-weight="normal">제어기가 직전 스텝에 만든 값 (색인 7–14)</text>
+<line x1="70" y1="889" x2="94" y2="889" stroke="#8c8c8c" stroke-width="1" stroke-dasharray="5 3" marker-end="url(#ah)"/>
+<text x="104" y="892" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11" text-anchor="start" fill="#333333" font-weight="normal">되먹임. 만드는 블록에서 출발함</text>
+<rect x="620" y="790" width="500" height="133" rx="0" fill="#fbfbfb" stroke="#8c8c8c" stroke-width="1"/>
+<text x="634" y="811" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11.5" text-anchor="start" fill="#1f3a5f" font-weight="bold">핵심</text>
+<text x="634" y="834" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11" text-anchor="start" fill="#333333" font-weight="normal">19 개를 사람이 채우는 것이 아님</text>
+<text x="634" y="853" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11" text-anchor="start" fill="#333333" font-weight="normal">밖에서 줄 값은 9 개, 나머지 10 개는 상수와 제어기 자기 상태임</text>
+<text x="634" y="872" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11" text-anchor="start" fill="#333333" font-weight="normal">a_prev 를 관측에 넣으므로 정책은 상태를 가짐</text>
+<text x="634" y="891" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11" text-anchor="start" fill="#333333" font-weight="normal">→ 자율모드 진입마다 reset() 필요 (docs/RL_SPEC.md §2.3)</text>
+<text x="634" y="910" font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif" font-size="11" text-anchor="start" fill="#1f3a5f" font-weight="normal">보상은 학습에서만 계산됨 — 배포 코드에는 없음</text>
+</svg>

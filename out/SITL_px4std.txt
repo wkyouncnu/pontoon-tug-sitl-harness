@@ -1,0 +1,24 @@
+SITL: episodes=20 steps=600 speed=1.00 dr=off  (1ep = 60.0 s)
+  ep  0 seed 1000  dpos 0.0010 m  dyaw 0.017 deg  k 3000/3000  overrun 0  worst 16.0 ms
+  ep  1 seed 1001  dpos 0.0010 m  dyaw 0.017 deg  k 3000/3000  overrun 0  worst 17.0 ms
+  ep  2 seed 1002  dpos 0.0010 m  dyaw 0.017 deg  k 3000/3000  overrun 0  worst 17.0 ms
+  ep  3 seed 1003  dpos 0.0010 m  dyaw 0.017 deg  k 3000/3000  overrun 0  worst 17.0 ms
+  ep  4 seed 1004  dpos 0.0010 m  dyaw 0.017 deg  k 3000/3000  overrun 0  worst 17.0 ms
+  ep  5 seed 1005  dpos 0.0010 m  dyaw 0.017 deg  k 3000/3000  overrun 0  worst 16.0 ms
+  ep  6 seed 1006  dpos 0.0010 m  dyaw 0.017 deg  k 3000/3000  overrun 0  worst 16.0 ms
+  ep  7 seed 1007  dpos 0.0010 m  dyaw 0.017 deg  k 3000/3000  overrun 0  worst 17.0 ms
+  ep  8 seed 1008  dpos 0.0010 m  dyaw 0.017 deg  k 3000/3000  overrun 0  worst 17.0 ms
+  ep  9 seed 1009  dpos 0.0010 m  dyaw 0.017 deg  k 3000/3000  overrun 0  worst 17.0 ms
+  ep 10 seed 1010  dpos 0.0010 m  dyaw 0.017 deg  k 3000/3000  overrun 0  worst 17.0 ms
+  ep 11 seed 1011  dpos 0.0010 m  dyaw 0.017 deg  k 3000/3000  overrun 0  worst 16.0 ms
+  ep 12 seed 1012  dpos 0.0010 m  dyaw 0.017 deg  k 3000/3000  overrun 0  worst 17.0 ms
+  ep 13 seed 1013  dpos 0.0010 m  dyaw 0.017 deg  k 3000/3000  overrun 0  worst 17.0 ms
+  ep 14 seed 1014  dpos 0.0010 m  dyaw 0.017 deg  k 3000/3000  overrun 0  worst 17.0 ms
+  ep 15 seed 1015  dpos 0.0010 m  dyaw 0.017 deg  k 3000/3000  overrun 0  worst 17.0 ms
+  ep 16 seed 1016  dpos 0.0010 m  dyaw 0.017 deg  k 3000/3000  overrun 0  worst 16.0 ms
+  ep 17 seed 1017  dpos 0.0010 m  dyaw 0.017 deg  k 3000/3000  overrun 0  worst 16.0 ms
+  ep 18 seed 1018  dpos 0.0010 m  dyaw 0.017 deg  k 3000/3000  overrun 0  worst 17.0 ms
+  ep 19 seed 1019  dpos 0.0010 m  dyaw 0.017 deg  k 3000/3000  overrun 0  worst 17.0 ms
+
+«’∞Ë: 20/20  ∆Ú±’ 0.00104 m (√÷¥Î 0.00104)  yaw ∆Ú±’ 0.0172 deg  overrun 0  °Ê  PASS
+±‚∑œ: out/SITL_RUN_px4std.json

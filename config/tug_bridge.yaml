@@ -1,0 +1,63 @@
+# 실기체용. 이 파일로 실행하면 실제 ESP32로 패킷이 나간다. 시험은 tug_bridge_loopback.yaml로 한다.
+#   Mothership Pixhawk → ESP32(.201) → NUC:14600 → /mothership/data
+#   /tug_command → NUC:14601 → ESP32(.202) → Tug1 Pixhawk
+#   /tug_command → NUC:14602 → ESP32(.203) → Tug2 Pixhawk
+# 실수 파라미터(*_s, *_hz)는 50.0처럼 소수점을 붙여야 한다 (정수로 쓰면 타입 오류로 시작 실패).
+# (가정) 표시: 사양에 없어 이전 esp_relay 값을 가져온 값. README "가정 목록" 참고.
+mothership_rx:
+  ros__parameters:
+    bind_ip: "0.0.0.0"
+    bind_port: 14600
+    allowed_src_ip: "192.168.68.201"       # Mothership ESP32
+    filter_sysid: 1                        # Mothership
+    filter_compid: 0                       # 0이면 무시 (가정)
+    topic: "/mothership/data"
+    qos_reliability: "best_effort"         # best_effort | reliable (depth 10)
+    heartbeat_enable: true                 # DroneBridge UDP 클라이언트 등록용
+    heartbeat_target_ip: "192.168.68.201"
+    heartbeat_target_port: 14550           # DroneBridge 고정값
+    heartbeat_period_s: 1.0
+    heartbeat_timeout_s: 3.0               # Mothership HEARTBEAT 끊김 판정 (가정)
+    own_sysid: 250                         # NUC
+    own_compid: 191                        # MAV_COMP_ID_ONBOARD_COMPUTER
+    stats_period_s: 2.0                    # (가정)
+    rx_timeout_s: 1.0                      # MOTHERSHIP_DATA 끊김 경고 기준 (가정)
+    rebind_after_s: 5.0                    # 이 시간 동안 수신이 없으면 소켓 재바인드, 0이면 끔 (가정)
+
+tug1_tx:
+  ros__parameters:
+    topic: "/tug_command"
+    qos_reliability: "best_effort"
+    bind_ip: "0.0.0.0"
+    bind_port: 14601
+    remote_ip: "192.168.68.202"            # Tug1 ESP32
+    remote_port: 14550                     # DroneBridge 고정값
+    send_rate_hz: 50.0
+    input_timeout_s: 0.5
+    own_sysid: 250
+    own_compid: 191
+    heartbeat_enable: true                 # (가정) 이전 ros_to_mavlink와 같은 동작
+    heartbeat_period_s: 1.0
+    heartbeat_timeout_s: 3.0               # (가정)
+    peer_sysid: 2                          # Tug1
+    shutdown_zero_count: 10                # 종료 시 τ=0 송신 횟수 (가정)
+    stats_period_s: 2.0                    # (가정)
+
+tug2_tx:
+  ros__parameters:
+    topic: "/tug_command"
+    qos_reliability: "best_effort"
+    bind_ip: "0.0.0.0"
+    bind_port: 14602
+    remote_ip: "192.168.68.203"            # Tug2 ESP32
+    remote_port: 14550                     # DroneBridge 고정값
+    send_rate_hz: 50.0
+    input_timeout_s: 0.5
+    own_sysid: 250
+    own_compid: 191
+    heartbeat_enable: true                 # (가정) 이전 ros_to_mavlink와 같은 동작
+    heartbeat_period_s: 1.0
+    heartbeat_timeout_s: 3.0               # (가정)
+    peer_sysid: 3                          # Tug2
+    shutdown_zero_count: 10                # 종료 시 τ=0 송신 횟수 (가정)
+    stats_period_s: 2.0                    # (가정)

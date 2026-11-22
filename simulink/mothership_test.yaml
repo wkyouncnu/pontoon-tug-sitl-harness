@@ -1,0 +1,175 @@
+module_name: px4_simulink_app
+
+parameters:
+    - group: Surge Controller
+      definitions:
+
+        SURGE_VEL_P:
+            description:
+                short: Surge Controller P gain
+                long: Surge Controller P gain
+            category: System
+            type: float
+            default: 100.0
+
+        SURGE_VEL_I:
+            description:
+                short: Surge Controller I gain
+                long: Surge Controller I gain
+            category: System
+            type: float
+            default: 0.0
+
+        SURGE_VEL_D:
+            description:
+                short: Surge Controller D gain
+                long: Surge Controller D gain
+            category: System
+            type: float
+            default: 0.0
+
+        SURGE_VEL_KANTI:
+            description:
+                short: Surge Controller Anti Windup
+                long: Surge Controller Anti Windup
+            category: System
+            type: float
+            default: 0.0
+
+    - group: Position Controller
+      definitions:
+
+        X_POSITION_P:
+            description:
+                short: X position P gain
+                long: X position control for p gain in Body frame
+            category: System
+            type: float
+            default: 3.0
+
+        X_POSITION_I:
+            description:
+                short: X position I gain2
+                long: X position controller for I gain in Body frame
+            category: System
+            type: float
+            default: 0.0
+
+        X_POSITION_D:
+            description:
+                short: X position D gain
+                long: X position controller for D gain in Body frame
+            category: System
+            type: float
+            default: 2.0
+
+        X_POSITION_KANTI:
+            description:
+                short: X position Anti-windup gain
+                long: X position controller for Anti-windup in Body frame
+            category: System
+            type: float
+            default: 0.0
+
+        X_POSITION_U:
+            description:
+                short: X position U gain
+                long: X position controller for U gain in Body frame
+            category: System
+            type: float
+            default: 10.0
+
+        Y_POSITION_P:
+            description:
+                short: Y position P gain
+                long: Y position control for p gain in Body frame
+            category: System
+            type: float
+            default: 3.0
+
+        Y_POSITION_I:
+            description:
+                short: Y position I gain
+                long: Y position controller for I gain in Body frame
+            category: System
+            type: float
+            default: 0.0
+
+        Y_POSITION_D:
+            description:
+                short: Y position D gain
+                long: Y position controller for D gain in Body frame
+            category: System
+            type: float
+            default: 0.0
+
+        Y_POSITION_KANTI:
+            description:
+                short: Y position Anti-windup gain
+                long: Y position controller for Anti-windup in Body frame
+            category: System
+            type: float
+            default: 0.0
+
+        Y_POSITION_V:
+            description:
+                short: Y position V gain
+                long: V position controller for V gain in Body frame
+            category: System
+            type: float
+            default: 20.0
+
+    - group: Heading Controller
+      definitions:
+
+        HEADING_P:
+            description:
+                short: Heading position P gain
+                long: Heading position controller P gain
+            category: System
+            type: float
+            default: 40.0
+
+        HEADING_D:
+            description:
+                short: Heading position D gain
+                long: Heading position controller D gain
+            category: System
+            type: float
+            default: 25.0
+
+    - group: Mission Command
+      definitions:
+
+        U_SETPOINT:
+            description:
+                short: desired surge velocity
+                long: desired surge velocity
+            category: System
+            type: float
+            default: 1.0
+
+        LOS_L:
+            description:
+                short: look ahead distance
+                long: look ahead distance
+            category: System
+            type: float
+            default: 1.5
+
+        HEADING_CMD:
+            description:
+                short: heading command
+                long: heading deg for command
+            category: System
+            type: float
+            default: 0.0
+
+        SCENARIO_MODE:
+            description:
+                short: scenario 1 or 2 or 3
+                long: scenario 1 or 2 or 3
+            category: System
+            type: float
+            default: 1.0
+        
