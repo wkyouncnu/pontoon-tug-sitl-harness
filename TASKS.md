@@ -306,12 +306,12 @@
 - README §3.1 관측표에 **색인·출처 열**을 추가하고 `docs/obs_howto.py` · `RL_SPEC.md` §2.3 링크를 걸었다.
   그림 3 캡션을 `관측 19차 조립 · 정책 · 추력배분 QP` 로 바꿨다.
 
-### 5.2 남은 것
+### 5.2 남은 것 — **전부 완료 (2026-11-22)**
 
-1. README 확장 — **파일별 기능 표**(사용자 요청 ⑥), 되는 것/안 되는 것, 영상 절
-2. `out/sitl_sc3.mp4` 를 `.gitignore` 예외로 넣을지 결정 → `docs/REPO_SCOPE.md` §2 와 정합
-3. PDF 재생성 (`docs/manual/`)
-4. **비공개 저장소 생성 + push** (사용자 승인 완료. 타인 저장소 패치는 **푸시하지 않는다**)
+1. README 확장 — 완료 (파일별 기능 표 §1.6, 되는 것/안 되는 것 §1.5, 영상 §7.7)
+2. `out/sitl_sc3.mp4` — **포함**으로 결정 (`.gitignore` 예외). 근거 `docs/REPO_SCOPE.md` §3.2.1
+3. PDF 재생성 — 완료 (1 308 276 B, 수식 102 식 · katex-error 0)
+4. **공개 저장소 생성 + push** — 완료. §9 참조. 타인 저장소 패치는 푸시하지 않았음
 
 ---
 
@@ -444,3 +444,42 @@
 3. 전자석 패드 중심이 터그 선체 중심에서 떨어져 있으면 **보정 필요**
 4. 측정 산포가 `dr.r_jit` 0.15 m 를 넘으면 **재학습 필요**
 5. 두 터그가 **다른 변**에 붙는 비대칭 배치는 학습 범위 밖 — 미시험
+
+
+---
+
+## 9. 공개 GitHub 저장소 — 완료 (2026-11-22, 사용자 승인 "공개로 올려도 되어")
+
+### 9.1 확정 사실
+
+| 항목 | 값 |
+|---|---|
+| 저장소 | <https://github.com/wkyouncnu/pontoon-tug-sitl-harness> |
+| 가시성 | **PUBLIC** (`gh repo view --json visibility` 실측) |
+| 기본 브랜치 | `main` |
+| 최초 커밋 | `50a6be1` (126 파일 · 15 300 줄) |
+| 현재 HEAD | `dbb1acc` |
+| 라이선스 | **MIT** (`licenseInfo.key = "mit"` 실측 — GitHub 자동인식 성공) |
+| 원격 트리 blob 수 | **126** (`git/trees/main?recursive=1` 실측) |
+| 계정 | `wkyouncnu`. 커밋 신원은 저장소 로컬 설정 `wkyouncnu@users.noreply.github.com` (개인 이메일 비공개) |
+
+### 9.2 공개 전환으로 새로 판단한 것
+
+- 근거 전문: `docs/REPO_SCOPE.md` §3.2 · §3.2.1 (§3.1 의 비공개 전제를 대체함)
+- **포함**: `config/tug_bridge.yaml` 사설대역 주소(RFC 1918) · `out/ppo_sc3_final.onnx`(정책 가중치) ·
+  `out/sitl_sc3.mp4`(4.60 MB, 보고서 그림 5) · `docs/manual/vendor/katex/`(MIT, 오프라인 PDF 재생성) ·
+  문서가 인용하는 `out/` 로그 10 개
+- **제외**: `vendor/tug_bridge/*.py` · `simulink/*.slx`·`*.m` · `mavlink/gen/` · `out/harness_sc3.mp4` ·
+  `out/*.bak` · `out/TASKS_prev_*.md` · `docs/manual/_eqsheet.html` — 원격 트리에서 부재 확인함
+- 신규 파일: `LICENSE`(MIT) · `NOTICE`(제3자 구성요소) · `.gitattributes`(`*.sh` LF / `*.ps1` CRLF 고정)
+
+### 9.3 확인 필요 (닫지 못한 것)
+
+1. ⚠️ **`mavlink/usv_tug.xml` 의 `52502`·`52503` 정의 재배포 권한 미확인.**
+   원본 `JiwoongHa/cooperative-tug-experiment` 는 공개이나 라이선스 파일이 없음
+   (`licenseInfo: null`, 실측). `NOTICE` §1 에 출처를 적고 MIT 허락범위에서 제외했으며,
+   소유자가 요청하면 즉시 제거함. **소유자 동의는 받지 않았음**
+2. ⚠️ **발주처(삼성중공업) 과제 산출물의 공개 허락 여부 미확인.** 사양서·Simulink 모델은
+   제외했으나 계약상 공개 제약이 있으면 저장소를 **비공개로 되돌려야 함**
+3. `patch/` 의 52501 패치는 **실험 저장소에 적용하지 않았고 PR 도 올리지 않았음** —
+   저장소 소유자 조율 사항임 (사용자 상시 지시)
