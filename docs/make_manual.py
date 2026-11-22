@@ -25,8 +25,28 @@ import time
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 SRC = os.path.join(ROOT, "README.md")
-APX = os.path.join(HERE, "RL_SPEC.md")
+APX = os.path.join(HERE, "RL_SPEC.md")          # 수식 점검 호환용
 APX_TITLE = "부록 A. 강화학습 규약 — 관측 · 행동 · 보상 · 추력배분"
+
+# 저장소의 모든 MD 를 부록으로 바인드한다 (사용자 지시: 단일 PDF 통합).
+#   (문자, 경로(ROOT 기준), 상대링크 접두사, 제목)
+APXS = [
+    ("A", "docs/RL_SPEC.md", "docs/",
+     "부록 A. 강화학습 규약 — 관측 · 행동 · 보상 · 추력배분"),
+    ("B", "docs/RUN_ORDER.md", "docs/",
+     "부록 B. 실행 순서 — 시뮬레이션 · 실물 예인시험"),
+    ("C", "docs/FIELD_CHECKLIST.md", "docs/", "부록 C. 현장 점검표"),
+    ("D", "docs/DEBUG.md", "docs/",
+     "부록 D. 디버그 — 계층 분리 · 계수기 해석 · 증상별 조치"),
+    ("E", "docs/SITL.md", "docs/", "부록 E. SITL 종단 시험"),
+    ("F", "docs/FILE_SWAP.md", "docs/", "부록 F. 파일 교체 경계"),
+    ("G", "docs/INPUT_PATHS.md", "docs/", "부록 G. 입력 경로 — 52501 · PX4 표준"),
+    ("H", "docs/GEOMETRY.md", "docs/", "부록 H. 부착 기하"),
+    ("I", "docs/REPO_SCOPE.md", "docs/", "부록 I. 저장소 공개 범위"),
+    ("J", "patch/README.md", "patch/", "부록 J. 52501 패치 적용 절차"),
+    ("K", "vendor/README.md", "vendor/", "부록 K. 제3자 저장소 사본"),
+    ("L", "TASKS.md", "", "부록 L. 작업 원장 — 기준선 수치 · 잔여작업"),
+]
 MANUAL_DIR = os.path.join(HERE, "manual")
 HTML = os.path.join(MANUAL_DIR, "_harness_sitl.html")
 EQHTML = os.path.join(MANUAL_DIR, "_eqsheet.html")
@@ -55,6 +75,7 @@ h2 { font-size: 12.5pt; margin: 18px 0 6px 0; padding-bottom: 3px;
      border-bottom: 1.2px solid #1f3a5f; color: #1f3a5f;
      page-break-after: avoid; page-break-inside: avoid; }
 h2.appendix { page-break-before: always; }
+.pagebreak { page-break-after: always; height: 0; }
 h3 { font-size: 10.6pt; margin: 12px 0 4px 0; color: #22364d;
      page-break-after: avoid; }
 h4 { font-size: 9.9pt; margin: 10px 0 3px 0; color: #22364d;
@@ -111,23 +132,25 @@ def esc(s: str) -> str:
     return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-def demote_appendix(md: str) -> str:
-    """RL_SPEC.md 를 부록 A 로: h1 제거, 번호를 A.n 으로, 한 단계 낮춤."""
+def demote_appendix(md: str, L: str = "A", pfx: str = "docs/") -> str:
+    """MD 를 부록 L 로: h1 제거, 번호를 L.n 으로, 한 단계 낮춤."""
     out = []
     for ln in md.split("\n"):
         if ln.startswith("# "):
             continue                                    # h1 은 부록 제목으로 대체
+        if ln.startswith("- 작성: 충남대학교"):
+            continue                                    # 작성자 표기는 첫 장에만
         m = re.match(r"^### (\d+)\.(\d+)\s+(.*)$", ln)
         if m:
-            out.append("#### A.%s.%s %s" % m.groups())
+            out.append("#### %s.%s.%s %s" % ((L,) + m.groups()))
             continue
         m = re.match(r"^## (\d+)\.\s+(.*)$", ln)
         if m:
-            out.append("### A.%s %s" % m.groups())
+            out.append("### %s.%s %s" % ((L,) + m.groups()))
             continue
         # 부록 안의 상대링크는 docs/ 기준이므로 README 기준으로 옮긴다
         ln = re.sub(r"\]\((?!https?:|file:|#|\.\./)([^)]+)\)",
-                    lambda m: "](docs/%s)" % m.group(1), ln)
+                    lambda m: "](" + pfx + "%s)" % m.group(1), ln)
         out.append(ln)
     return "\n".join(out)
 
@@ -153,9 +176,22 @@ def protect(md: str):
     return md, store
 
 
+def fence_html(text: str) -> str:
+    """펜스코드 원문을 pre/code 블록으로 바꾼다."""
+    lines = text.split(chr(10))
+    if lines and lines[0].lstrip().startswith(chr(96) * 3):
+        lines = lines[1:]
+    if lines and lines[-1].lstrip().startswith(chr(96) * 3):
+        lines = lines[:-1]
+    return "<pre><code>" + esc(chr(10).join(lines)) + "</code></pre>"
+
+
 def restore(body: str, store: dict):
     """치환자를 되돌린다. 수식은 KaTeX 구분자로 감싼다."""
     blk = inl = 0
+    for key in list(store):
+        if key.startswith("ZZCODE"):
+            body = body.replace("<p>" + key + "</p>", key)
     for key, text in store.items():
         if key.startswith("ZZMBLK"):
             blk += 1
@@ -167,6 +203,10 @@ def restore(body: str, store: dict):
         elif key.startswith("ZZMINL"):
             inl += 1
             body = body.replace(key, "\\(%s\\)" % esc(text))
+        elif key.startswith("ZZTICK"):
+            body = body.replace(key, "<code>" + esc(text[1:-1]) + "</code>")
+        elif key.startswith("ZZCODE"):
+            body = body.replace(key, fence_html(text))
         else:
             body = body.replace(key, text)
     return body, blk, inl
@@ -187,15 +227,32 @@ def build_html():
             break
     md = "\n".join(lines)
 
-    # 목차에 부록 A 추가 (README 본문은 건드리지 않는다 — PDF 전용)
-    toc_last = "10. [확인 필요 사항](#10-확인-필요-사항)"
-    if toc_last in md:
-        md = md.replace(toc_last, toc_last + "\n11. [" + APX_TITLE + "](#apx-a)", 1)
+    # 첫 장이 실행 순서만 담도록 구성도 앞에서 쪽을 끊는다 (PDF 전용)
+    pb = "<div class=\"pagebreak\"></div>"
+    img1 = "![시스템 구성](docs/img/diagram_overview.svg)"
+    if img1 in md and pb not in md:
+        md = md.replace(img1, pb + "\n\n" + img1, 1)
 
-    # 부록 A 붙이기
-    apx = demote_appendix(io.open(APX, encoding="utf-8").read())
-    md = (md + "\n\n<h2 class=\"appendix\" id=\"apx-a\">" + APX_TITLE + "</h2>\n\n"
-          + apx + "\n")
+    # 목차에 부록 전부 추가 (README 본문은 건드리지 않는다 — PDF 전용)
+    toc_last = "10. [확인 필요 사항](#10-확인-필요-사항)"
+    toc = [toc_last]
+    for i, (L, rel, pfx, title) in enumerate(APXS, 11):
+        toc.append("%d. [%s](#apx-%s)" % (i, title, L.lower()))
+    if toc_last in md:
+        md = md.replace(toc_last, "\n".join(toc), 1)
+
+    # 부록 붙이기 — 저장소의 모든 MD
+    nap = 0
+    for L, rel, pfx, title in APXS:
+        path = os.path.join(ROOT, rel.replace("/", os.sep))
+        if not os.path.isfile(path):
+            print("[md  ] 부록 %s 원본 없음: %s" % (L, rel))
+            continue
+        apx = demote_appendix(io.open(path, encoding="utf-8").read(), L, pfx)
+        md = (md + "\n\n<h2 class=\"appendix\" id=\"apx-" + L.lower() + "\">"
+              + title + "</h2>\n\n" + apx + "\n")
+        nap += 1
+    print("[md  ] 부록 %d 편 바인드" % nap)
 
     md, store = protect(md)
     body = markdown.markdown(
@@ -227,9 +284,17 @@ def build_html():
 def build_eqsheet():
     """수식 QA 용: LaTeX 원문과 렌더 결과를 나란히 둔 점검표."""
     rows = []
-    for name, path in (("README.md", SRC), ("RL_SPEC.md", APX)):
+    srcs = [("README.md", SRC)]
+    for L, rel, pfx, title in APXS:
+        p = os.path.join(ROOT, rel.replace("/", os.sep))
+        if os.path.isfile(p):
+            srcs.append((os.path.basename(rel), p))
+    for name, path in srcs:
         src = io.open(path, encoding="utf-8").read()
         src = re.sub(r"```.*?```", "", src, flags=re.S)
+        # 인라인코드 안의 셸 변수는 수식이 아니다
+        tick = chr(96)
+        src = re.sub(tick + "[^" + tick + "]+" + tick, "", src)
         for m in re.finditer(r"\$\$(.+?)\$\$", src, flags=re.S):
             rows.append((name, "block", m.group(1)))
         for m in re.finditer(r"(?<!\$)\$([^$\n]+?)\$(?!\$)", src):
@@ -296,7 +361,8 @@ def main() -> int:
     rc3, dumped = run([exe, "--headless=new", "--disable-gpu", "--no-sandbox",
                        "--virtual-time-budget=30000", "--dump-dom", url])
     io.open(dom, "w", encoding="utf-8").write(dumped)
-    nerr = dumped.count("katex-error")
+    # 본문·코드에 katex-error 라는 글자가 있을 수 있으므로 KaTeX 가 실제로 그린 span 만 센다
+    nerr = dumped.count('<span class="katex-error"')
     nmath = dumped.count("class=\"katex\"")
     print("[qa  ] katex span %d · katex-error %d · 식 %d (블록 %d + 인라인 %d)"
           % (nmath, nerr, neq, nblk, ninl))

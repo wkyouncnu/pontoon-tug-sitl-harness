@@ -2,8 +2,49 @@
 
 - 작성: 충남대학교 자율운항시스템공학과 윤원근 교수
 - 저장소: <https://github.com/wkyouncnu/pontoon-tug-sitl-harness>
-- 매뉴얼(PDF): [docs/manual/harness_sitl.pdf](docs/manual/harness_sitl.pdf)
+- 매뉴얼(PDF): [docs/manual/harness_sitl.pdf](docs/manual/harness_sitl.pdf). 이 README 와 저장소의 모든 문서를 부록 A–L 로 묶은 단일 파일임
 - 라이선스: [MIT](LICENSE). 제3자 구성요소와 제외 파일은 [NOTICE](NOTICE)
+
+## 실행 순서 요약
+
+### 시뮬레이션 — 한 명령으로 전체 재현
+
+```
+bash run_all.sh
+```
+
+| 순서 | 단계 | 실행 파일 | 합격 판정 | 실측 |
+|---|---|---|---|---|
+| 1 | `dialect` | `mavlink/gen_dialect.py` | `CRC_EXTRA` 52501 = 119 · 52502 = 123 · 52503 = 16 | 회귀 OK |
+| 2 | `onnx` | `policy/export_onnx.py` | sb3 대 ONNX `max|Δ| < 1e-5` | 9.090e-07 |
+| 3 | `diagrams` | `docs/img/src/make_diagrams.py` | 그림 4 장 생성 | 4 장 |
+| 4 | `tests` | `tests/run_tests.py` | 0 FAIL | 63 PASS / 0 FAIL |
+| 5 | `sitl` | `sitl/run_sitl.py --episodes 20 --speed 1 --dr off --seed0 1000` | 20/20 · 평균 ≤ 0.01 m | 20/20 · 0.001 04 m |
+| 6 | `manual` | `docs/make_manual.py` | 수식 오류 0 | 102 식 · 오류 0 |
+
+- 한 단계만 돌릴 때는 `bash run_all.sh --only sitl`. 전체 실측 소요 1 246 s
+- 실패하면 그 자리에서 중단하고 `out/run_all_<단계>.txt` 꼬리 20 줄을 띄움
+
+### 실물 예인시험 — 측정부터 시작함
+
+| 순서 | 하는 일 | 실행 파일 · 대상 | 통과 기준 |
+|---|---|---|---|
+| 0 | 마더십 송신 메시지 측정 | `tools/sniff_mothership.py --port 14600 --seconds 30` | 입력 경로 확정 |
+| 1 | 부착점 실측 반영 | `config/geometry.yaml` | 머리줄 간격이 실측과 일치 |
+| 2 | 다이얼렉트 생성 (NUC) | `mavlink/gen_dialect.py` | `CRC_EXTRA` 123 · 16 불변 |
+| 3 | (52501 경로만) 패치 적용 | `patch/0001-add-mothership-state-52501.patch` | `/mothership/state` 생성 |
+| 4 | NUC 에 제어 코드 배치 | `nuc/` · `../pontoon_rl/` · `out/ppo_sc3_final.onnx` | import 성공 |
+| 5 | 수신 확인 (육상) | 계수기 | `rx_parse_err` 0 · `rl_stale` 0 |
+| 6 | 통전 전 안전 점검 | `rc_on_off = 1` | 명령 τ = 0 |
+| 7 | 수동 조종 확인 | 마더십 기존 LOS·PID | 터그 2 대 반응 |
+| 8 | 자율 전환 | `rc_on_off = 0` | 위치오차 감소 |
+| 9 | 종료·기록 | τ=0 ×10 후 소켓 종료 | 로그 회수 |
+
+- 상세 명령·옵션: [docs/RUN_ORDER.md](docs/RUN_ORDER.md)
+- 현장 점검표: [docs/FIELD_CHECKLIST.md](docs/FIELD_CHECKLIST.md)
+- 디버그 — 계층 분리 · 계수기 해석 · 증상별 조치: [docs/DEBUG.md](docs/DEBUG.md)
+- ⚠️ 터그 Pixhawk 에 수신 타임아웃이 없어 **마지막 명령값을 유지함.** 조치 순서는
+  조종기 개입 → 자율 해제 → 급전 차단
 
 ![시스템 구성](docs/img/diagram_overview.svg)
 
